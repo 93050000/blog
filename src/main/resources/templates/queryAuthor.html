@@ -1,0 +1,182 @@
+﻿<!DOCTYPE HTML>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="author" content="smartit-source">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- title here -->
+    <title>Home</title>
+    <!-- Favicon and Touch Icons -->
+
+    <link rel="shortcut icon" th:href="@{../images/fav.png}">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{../css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../css/flaticon.css}">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/animate.css}">
+    <link rel="stylesheet" th:href="@{../css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.theme.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.transitions.css}">
+    <link rel="stylesheet" th:href="@{../css/jquery.barfiller.css}">
+    <!--Theme custom css -->
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <!--Theme Responsive css-->
+    <link rel="stylesheet" th:href="@{../css/responsive.css}"/>
+    <script th:src="@{../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+
+</head>
+<body>
+<!-- header area start here -->
+<header class="header-area header-one" id="sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-xs-6">
+                <div class="log-area">
+                    <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="menu-area">
+                    <nav>
+                        <ul>
+                            <li><a th:href="@{/}" th:text="#{index.home}">Home</a></li>
+                            <li><a th:href="@{/admin/toRegister}" th:text="#{login.register}"
+                                   th:if="${session.username} eq null">Contact us</a></li>
+                            <li><a th:href="@{/admin/toLogin}" th:text="#{login.login}"
+                                   th:if="${session.username} eq null">Contact us</a></li>
+                            <li><a th:href="@{/admin/toLogin}" th:if="${session.username}"
+                                   th:text="${session.username}">我的</a></li>
+                            <li><a th:href="@{/admin/logout}" th:if="${session.username}" th:text="#{login.logout}"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-6">
+                <div class="humbargar-area">
+                    <div class="menu-icon text-right">
+                        <span class="flaticon-menu humbargar"></span>
+                    </div>
+                    <div class="close-area">
+                        <span class="close"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- secendary menu area start here -->
+<!-- post area start here	 -->
+<div class="post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                <h3>您正在浏览<span style="color:red;" th:text="${session.author}"></span>所发布的文章</h3>
+                <div class="single-post" th:each="art:${articles}">
+
+                    <div class="inner-post">
+
+                        <div class="post-info">
+                            <div class="post-title">
+                                <h3><a th:href="@{/index/queryById(id=${art.getId()})}" th:text="${art.getTitle()}">Tourism in cox's bazar</a></h3>
+                            </div>
+                            <div class="post-content">
+                                <p th:text="${art.getContent()}" style="display: -webkit-box;overflow: hidden;
+                                -webkit-box-orient: vertical;-webkit-line-clamp: 3"> </p>
+                            </div>
+                            <div class="blog-meta fix">
+                                <div class="meta-left pull-left">
+                                    <ul>
+                                        <li><span class="flaticon-man-user user"></span>
+                                            <p><a href="#" th:text="${art.getAuthor()}">Admin</a></p></li>
+                                        <li><span class="flaticon-calendar clendar"></span><p>发布于：&nbsp;</p>
+                                            <p th:text="${#dates.format(art.getCreated(), 'yyyy-MM-dd ')}">20 Jan
+                                                2018</p></li>
+                                        <li><span class="flaticon-calendar clendar"></span><p>修改于：&nbsp;</p>
+                                            <p th:text="${#dates.format(art.getModified(), 'yyyy-MM-dd ')}">20 Jan
+                                                2018</p></li>
+                                    </ul>
+                                </div>
+                                <div class="post-readmore pull-right">
+                                    <a th:href="@{/index/queryById(id=${art.getId()})}" class="readmore-btn myupdate"
+                                       th:text="#{index.Read}">Read More <span>+</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                <div class="pagination-area">
+                    <div class="pagination">
+                        <ul >
+                            <li class="prev" th:if="${articles.hasPreviousPage}"><a th:href="@{/queryByAuthor(pageNum=${1},articles=${articles})}">首页</a></li>
+                            <li class="prev" th:if="${articles.hasPreviousPage}"><a th:href="@{/queryByAuthor(pageNum=${articles.prePage},articles=${articles})}">上一页</a></li>
+                            <li class="page" th:each="nav:${articles.navigatepageNums}">
+                                <a th:href="@{/queryByAuthor(pageNum=${nav},articles=${articles})}" th:text="${nav}" th:if="${nav != articles.pageNum}"></a><!--如果不是当前页则可以跳转其他页面。遍历展示-->
+                                <a th:class="${'active'}" th:if="${nav == articles.pageNum}" th:text="${nav}"></a><!--如果是当前页则有样式。遍历 展示-->
+                            </li>
+                            <li class="next pull-right" th:if="${articles.hasNextPage}"><a th:href="@{/queryByAuthor(pageNum=${articles.nextPage},articles=${articles})}">下一页</a></li>
+                            <li class="next pull-right" th:if="${articles.pageNum < articles.pages}"><a th:href="@{/queryByAuthor(pageNum=${articles.pages},articles=${articles})}">下一页</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- leaf left area start here	 -->
+    <div class="leaf-left">
+        <img th:src="@{../images/leaf-left.png}" alt="leaf-right">
+    </div>
+    <!-- leaf left area end here	 -->
+    <!-- leaf right area start here	 -->
+    <div class="leaf-right">
+        <img th:src="@{../images/leaf-right.png}" alt="leaf-right">
+    </div>
+    <!-- leaf right area end here	 -->
+</div>
+<!-- post area end here	 -->
+
+
+<!-- js file start -->
+<script th:src="@{../js/vendor/jquery-1.12.0.min.js}"></script>
+<script th:src="@{../js/plugins.js}"></script>
+<script th:src="@{../js/Popper.js}"></script>
+<script th:src="@{../js/bootstrap.min.js}"></script>
+<script th:src="@{../js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../js/owl.carousel.min.js}"></script>
+<script th:src="@{../js/isotope.pkgd.min.js}"></script>
+<script th:src="@{../js/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{../js/scrollup.js}"></script>
+<script th:src="@{../js/jquery.counterup.min.js}"></script>
+<script th:src="@{../js/waypoints.min.js}"></script>
+<script th:src="@{../js/jquery.appear.js}"></script>
+<script th:src="@{../js/jquery.barfiller.js}"></script>
+<script th:src="@{../js/main.js}"></script>
+<!-- End js file -->
+</body>
+<script type="text/javascript">
+    let deleteTitle = document.getElementById('deleteTitle')
+    deleteTitle.onclick = function () {
+        document.getElementById("aa")
+        const deleteTITLE = "您真的要删除《"+"<p th:text='${art.getTitle()}'></p>"+"吗？"
+        let flag = confirm(deleteTITLE)
+        console.log(flag)
+        if (!flag) return false
+    }
+</script>
+</html>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhao.mapper.ArticleMapper">
+    <select id="queryArticle" resultType="article">
+        select * from article ORDER BY hits desc
+    </select>
+    <select id="queryById" resultType="article">
+        select * from article where article.id=#{id}
+    </select>
+    <update id="updateHist" parameterType="_int" >
+        update blog.article set hits = #{hits} where id = #{id}
+    </update>
+    <insert id="insertArticle" parameterType="article">
+        insert into blog.article (title,content,created,modified,categories,allow_commnet,thumbnall,author)
+        values (#{title},#{content},now(),now(),#{categories},#{allow_commnet},#{thumbnall},#{author});
+    </insert>
+    <select id="queryByName" resultType="article" parameterType="string">
+        select * from blog.article where author = #{author} ORDER BY hits desc
+    </select>
+    <select id="queryCategories" parameterType="string" resultType="article">
+        select * from blog.article where categories = #{categories} ORDER BY hits desc
+    </select>
+    <update id="update" parameterType="article">
+        update article set title=#{title},content=#{content},modified=now(),
+        categories=#{categories},allow_commnet=#{allow_commnet} where id=#{id}
+    </update>
+    <delete id="delete" parameterType="_int">
+        delete from article where id = #{id};
+    </delete>
+    <select id="queryTitleAndAuthor" parameterType="string" resultType="article">
+        select * from blog.article
+        <where>
+            title like concat('%',#{TitleAuthor},'%') or author like concat('%',#{TitleAuthor},'%')
+        </where>ORDER BY hits desc
+    </select>
+</mapper>
