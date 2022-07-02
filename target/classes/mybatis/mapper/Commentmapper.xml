@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhao.mapper.CommentMapper">
+    <select id="queryCategoriy" parameterType="_int" resultType="comment">
+        select * from comment where article_id = #{id};
+    </select>
+    <select id="selectCount" parameterType="_int" resultType="_int">
+        select count(*) from blog.comment where article_id = #{id};
+    </select>
+    <insert id="insertComment" parameterType="comment">
+        insert into blog.comment (article_id,created,ip,content,author)
+        values(#{article_id},now(),#{ip},#{content},#{author});
+    </insert>
+    <delete id="deleteComment" parameterType="_int">
+        delete from blog.comment where id = #{id};
+    </delete>
+</mapper>

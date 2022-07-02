@@ -1,0 +1,357 @@
+﻿<!DOCTYPE HTML>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="author" content="smartit-source">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- title here -->
+    <title>Home</title>
+    <!-- Favicon and Touch Icons -->
+
+    <link rel="shortcut icon" th:href="@{../images/fav.png}">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{../css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../css/flaticon.css}">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/animate.css}">
+    <link rel="stylesheet" th:href="@{../css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.theme.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.transitions.css}">
+    <link rel="stylesheet" th:href="@{../css/jquery.barfiller.css}">
+    <!--Theme custom css -->
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <!--Theme Responsive css-->
+    <link rel="stylesheet" th:href="@{../css/responsive.css}"/>
+    <script th:src="@{../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+
+</head>
+<body>
+<!-- header area start here -->
+<header class="header-area header-one" id="sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-xs-6">
+                <div class="log-area">
+                    <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="menu-area">
+                    <nav>
+                        <ul>
+                            <form th:action="@{/queryTitleAndAuthor}"  >
+                                <img th:src="@{../images/751463.png}" style="margin-top: 8px;width: 30px;height: 30px;float: left">
+                                <input type="text" name="TitleAuthor" placeholder="请输入作者或标题内容" style="border: 0;border-style:none;border-bottom:1px solid #6c62ff;width: 200px;height: 40px;float: left">
+
+                                <input type="submit" style="float: left;margin: 10px ;">
+
+                            </form>
+                            <li><a th:href="@{/}" th:text="#{index.home}">Home</a></li>
+                            <li><a th:href="@{/admin/toRegister}" th:text="#{login.register}"
+                                   th:if="${session.username} eq null">Contact us</a></li>
+                            <li><a th:href="@{/admin/toLogin}" th:text="#{login.login}"
+                                   th:if="${session.username} eq null">Contact us</a></li>
+                            <li><a th:href="@{/admin/toLogin}" th:if="${session.username}"
+                                   th:text="${session.username}">我的</a></li>
+                            <li><a th:href="@{/admin/logout}" th:if="${session.username}" th:text="#{login.logout}"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-6">
+                <div class="humbargar-area">
+                    <div class="menu-icon text-right">
+                        <span class="flaticon-menu humbargar"></span>
+                    </div>
+                    <div class="close-area">
+                        <span class="close"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header area start here -->
+<!-- menu area start here -->
+<div class="sidebar-menu ">
+    <div class="close-area">
+        <span class="close"><i class="icon fa fa-times-circle"></i></span>
+    </div>
+    <div class="main-menu">
+        <nav>
+            <ul>
+                <li><a th:href="@{/index/toInsert}">发布文章</a></li>
+                <li><a th:href="@{/index/selectMy}">管理我的文章</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- menu area start here -->
+<!-- banner area start here -->
+<div class="banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="banner-content">
+                    <div class="banner-title">
+                        <h1>My personal blog</h1>
+                    </div>
+                    <div class="banner-subtitle">
+                        <h4>Browse the world</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="banner-img">
+                    <img th:src="@{../images/6133521.png}" alt="banner">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner area start here -->
+<!-- secendary menu area start here -->
+<div class="secendary-menu-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="secendary-menu">
+                    <nav>
+                        <ul>
+                            <li><a th:href="@{/}"><img th:src="@{../images/7179250.png}" style="width:40px;height: 40px;display: block;margin-bottom: 10px"> 首页 </a></li>
+                            <li ><a th:href="@{/queryCategories(categories=国际)}"> <img th:src="@{../images/826070.png}" style="width:40px;height: 40px;display: block;margin-bottom: 10px"> 国际 </a></li>
+                            <li><a th:href="@{/queryCategories(categories=国内)}"><img th:src="@{../images/804333.png}" style="width:40px;height: 40px;display: block;margin-bottom: 10px"> 国内 </a></li>
+                            <li><a th:href="@{/queryCategories(categories=旅游)}"><img th:src="@{../images/824003.png}" style="width:40px;height: 40px;display: block;margin-bottom: 10px">  旅游 </a></li>
+                            <li><a th:href="@{/queryCategories(categories=面试)}"><img th:src="@{../images/3135714.png}" style="width:40px;height: 40px;display: block;margin-bottom: 10px"> 面试 </a></li>
+                            <li><a th:href="@{/queryCategories(categories=技术)}"><img th:src="@{../images/7017556.png}" style="width:40px;height: 40px;display: block;margin-bottom: 10px">技术</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- secendary menu area start here -->
+<!-- post area start here	 -->
+<div class="post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12" >
+                <div class="single-post" th:each="art:${articles.list}">
+                        <div class="inner-post">
+
+                        <div class="post-info">
+                            <div class="post-title">
+                                <h3><a th:href="@{/index/queryById(id=${art.id})}" th:text="${art.title}">Tourism in cox's bazar</a></h3>
+                            </div>
+                            <div class="post-content">
+                                <p th:text="${art.content}" style="display: -webkit-box;overflow: hidden;
+                                -webkit-box-orient: vertical;-webkit-line-clamp: 3"> </p>
+                            </div>
+                            <div class="blog-meta fix">
+                                <div class="meta-left pull-left">
+                                    <ul>
+                                        <li><span class="flaticon-man-user user"></span>
+                                            <p><a th:href="@{/index/queryByAuthor(author=${art.author})}" th:text="${art.getAuthor}">Admin</a></p></li>
+                                        <li><span class="flaticon-calendar clendar"></span><p>发布于：&nbsp;</p>
+                                            <p th:text="${#dates.format(art.created, 'yyyy-MM-dd ')}">20 Jan
+                                                2018</p></li>
+                                        <li><span class="flaticon-calendar clendar"></span><p>修改于：&nbsp;</p>
+                                            <p th:text="${#dates.format(art.modified, 'yyyy-MM-dd ')}">20 Jan
+                                                2018</p></li>
+                                    </ul>
+                                </div>
+                                <div class="post-readmore pull-right">
+                                    <a th:href="@{/index/queryById(id=${art.id})}" class="readmore-btn"
+                                       th:text="#{index.Read}">Read More <span>+</span></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-date one">
+                        <span th:text="${art.categories}" style="font-size: 22px">01</span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                <div class="pagination-area">
+                    <div class="pagination">
+                        <ul th:if="${categories} eq null">
+                            <li class="prev" th:if="${articles.hasPreviousPage}"><a th:href="@{/(pageNum=${1})}">首页</a></li>
+                            <li class="prev" th:if="${articles.hasPreviousPage}"><a th:href="@{/(pageNum=${articles.prePage})}">上一页</a></li>
+                            <li class="page" th:each="nav:${articles.navigatepageNums}">
+                                <a th:href="@{/(pageNum=${nav})}" th:text="${nav}" th:if="${nav != articles.pageNum}"></a><!--如果不是当前页则可以跳转其他页面。遍历展示-->
+                                <a th:class="${'active'}" th:if="${nav == articles.pageNum}" th:text="${nav}"></a><!--如果是当前页则有样式。遍历 展示-->
+                               </li>
+                            <li class="next pull-right" th:if="${articles.hasNextPage}"><a th:href="@{/(pageNum=${articles.nextPage})}">下一页</a></li>
+                            <li class="next pull-right" th:if="${articles.pageNum < articles.pages}"><a th:href="@{/(pageNum=${articles.pages})}">下一页</a></li>
+
+                        </ul>
+                        <ul th:if="${categories}">
+                            <li class="prev" th:if="${articles.hasPreviousPage}"><a th:href="@{/queryCategories(pageNum=${1},categories=${categories})}">首页</a></li>
+                            <li class="prev" th:if="${articles.hasPreviousPage}"><a th:href="@{/queryCategories(pageNum=${articles.prePage},categories=${categories})}">上一页</a></li>
+                            <li class="page" th:each="nav:${articles.navigatepageNums}">
+                                <a th:href="@{/queryCategories(pageNum=${nav},categories=${categories})}" th:text="${nav}" th:if="${nav != articles.pageNum}"></a><!--如果不是当前页则可以跳转其他页面。遍历展示-->
+                                <a th:class="${'active'}" th:if="${nav == articles.pageNum}" th:text="${nav}"></a><!--如果是当前页则有样式。遍历 展示-->
+                            </li>
+                            <li class="next pull-right" th:if="${articles.hasNextPage}"><a th:href="@{/queryCategories(pageNum=${articles.nextPage},categories=${categories})}">下一页</a></li>
+                            <li class="next pull-right" th:if="${articles.pageNum < articles.pages}"><a th:href="@{/queryCategories(pageNum=${articles.pages},categories=${categories})}">下一页</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- leaf left area start here	 -->
+    <div class="leaf-left">
+        <img th:src="@{../images/leaf-left.png}" alt="leaf-right">
+    </div>
+    <!-- leaf left area end here	 -->
+    <!-- leaf right area start here	 -->
+    <div class="leaf-right">
+        <img th:src="@{../images/leaf-right.png}" alt="leaf-right">
+    </div>
+    <!-- leaf right area end here	 -->
+</div>
+<!-- post area end here	 -->
+
+<!-- footer area start here -->
+<footer class="footer-area">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-widget widget-text">
+                        <div class="footer-logo">
+                            <h2><a href="#">Xfar </a></h2>
+                        </div>
+                        <div class="widget-content">
+                            <p>Lorem Ipsum is simply dummy
+                                text of the printing and typesetting
+                                industry. Lorem Ipsum has been
+                                the industry's standard dummy
+                                text ever since the 1500s, when an
+                                unknown printer took a galley of
+                                type and scrambled it to make a
+                                type specimen book. It has survive
+                                not only five centuries, but also the
+                                leap into electronic typesetting, </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-widget widget-nave">
+                        <div class="widget-title">
+                            <h3>Quick Link</h3>
+                        </div>
+                        <div class="widget-nave-list">
+                            <ul class="headerList">
+                                <li><a href="#">Fashion </a></li>
+                                <li><a href="#">Life style</a></li>
+                                <li><a href="#">Creative</a></li>
+                                <li><a href="#">Traveling</a></li>
+                                <li><a href="#">Guide</a></li>
+                                <li><a href="#">World Tour</a></li>
+                                <li><a href="#">Ship Tour</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget widget-recent-post">
+                        <div class="widget-title">
+                            <h3>Recent Post</h3>
+                        </div>
+                        <div class="recent-post-list">
+                            <div class="single-post">
+                                <p><a href="#">We denounce with righteou
+                                    indignation and dislike</a></p>
+                            </div>
+                            <div class="single-post">
+                                <p><a href="#">We denounce with righteou
+                                    indignation and dislike</a></p>
+                            </div>
+                            <div class="single-post last">
+                                <p><a href="#">We denounce with righteou
+                                    indignation and dislike</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget widget-Subscribe">
+                        <div class="widget-title">
+                            <h3>Subscribe Us</h3>
+                        </div>
+                        <div class="widget-Subscribe-form">
+                            <form action="#">
+                                <div class="from-grupe">
+                                    <input type="email" name="email" placeholder="Enter your email" id="email">
+                                    <button type="submit" class="submit-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="widget-content">
+                            <p>Blinded by desire, that they can
+                                foresee the pain and trouble that
+                                are bound to ensue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="copyright-area">
+                        <p>Copyright &copy; 2019.Company name All rights reserved.<a target="_blank"
+                                                                                     href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-right text-right">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer area end here -->
+<!-- js file start -->
+<script th:src="@{../js/vendor/jquery-1.12.0.min.js}"></script>
+<script th:src="@{../js/plugins.js}"></script>
+<script th:src="@{../js/Popper.js}"></script>
+<script th:src="@{../js/bootstrap.min.js}"></script>
+<script th:src="@{../js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../js/owl.carousel.min.js}"></script>
+<script th:src="@{../js/isotope.pkgd.min.js}"></script>
+<script th:src="@{../js/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{../js/scrollup.js}"></script>
+<script th:src="@{../js/jquery.counterup.min.js}"></script>
+<script th:src="@{../js/waypoints.min.js}"></script>
+<script th:src="@{../js/jquery.appear.js}"></script>
+<script th:src="@{../js/jquery.barfiller.js}"></script>
+<script th:src="@{../js/main.js}"></script>
+<!-- End js file -->
+
+
+</body>
+
+</html>
+

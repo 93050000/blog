@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="author" content="smartit-source">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- title here -->
+    <title>Home</title>
+    <!-- Favicon and Touch Icons -->
+
+    <link rel="shortcut icon" th:href="@{../images/fav.png}">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{../css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../css/flaticon.css}">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/animate.css}">
+    <link rel="stylesheet" th:href="@{../css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.theme.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.transitions.css}">
+    <link rel="stylesheet" th:href="@{../css/jquery.barfiller.css}">
+    <!--Theme custom css -->
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <!--Theme Responsive css-->
+    <link rel="stylesheet" th:href="@{../css/responsive.css}" />
+    <script th:src="@{../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+
+</head>
+<body>
+
+<div class="post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12" >
+                <div class="single-post" >
+                    <a th:href="@{/}" style="font-size: 18px;margin: 1px;">返回首页</a>
+                    <div class="inner-post">
+
+                        <div class="post-info">
+                            <h1 style="text-align: center">添加文章</h1>
+                            <form th:action="@{/index/update}">
+                                <input type="hidden" name="id" th:value="${article.getId()}">
+                                <label style="font-size: 20px">文章标题</label>
+                                <div class="form-group box-shadow" >
+                                    <input type="text" class="form-control" name="title" th:value="${article.getTitle()}">
+                                </div>
+                                <label style="font-size: 20px">文章内容</label>
+                                <div class="form-group box-shadow">
+
+                                    <textarea style="width: 790px;max-width:790px;min-height: 200px;" name="content" th:text="${article.getContent()}"></textarea>
+                                </div>
+
+                                <div class="form-group box-shadow" >
+                                    <label  style="font-size: 20px">文章分类</label>
+                                        <select	class="form-control"   name="categories">
+                                            <option selected="selected" disabled="disabled" >---请选择文章分类---</option>
+<!--                                            <div th:each="cat:${categoriys}" >-->
+                                            <option th:each="cat:${categoriys}" th:text="${cat.getCategories()}"
+                                                    th:value="${cat.getCategories()}" th:selected="${article.getCategories()} == ${cat.getCategories()}"></option>
+<!--                                            </div>-->
+                                        </select>
+
+                                </div>
+                                <div class="form-group box-shadow">
+                                    <label style="font-size: 20px">是否可以被评论</label>
+                                    &nbsp;&nbsp;
+                                    <select	class="form-control"  name="allow_commnet" >
+                                        <option value="1" th:selected="${article.getAllow_commnet()} == '1'" >正常 </option>
+                                        <option value="0" th:selected="${article.getAllow_commnet()} == '0'">禁用</option>
+                                    </select>
+                                </div>
+
+                                <div class="from-btn text-right">
+                                    <button type="submit" class="primary-btn" >发布</button>
+                                    <a th:href="@{/}" class="primary-btn" style="font-size: 14px;">取消</a>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- footer area end here -->
+<!-- js file start -->
+<script th:src="@{../js/vendor/jquery-1.9.1.min.js}"></script>
+<script th:src="@{../js/plugins.js}"></script>
+<script th:src="@{../js/Popper.js}"></script>
+<script th:src="@{../js/bootstrap.min.js}"></script>
+<script th:src="@{../js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../js/owl.carousel.min.js}"></script>
+<script th:src="@{../js/isotope.pkgd.min.js}"></script>
+<script th:src="@{../js/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{../js/scrollup.js}"></script>
+<script th:src="@{../js/jquery.counterup.min.js}"></script>
+<script th:src="@{../js/waypoints.min.js}"></script>
+<script th:src="@{../js/jquery.appear.js}"></script>
+<script th:src="@{../js/jquery.barfiller.js}"></script>
+<script th:src="@{../js/main.js}"></script>
+<!-- End js file -->
+
+</body>
+</html>

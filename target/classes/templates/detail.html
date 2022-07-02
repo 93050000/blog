@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="author" content="smartit-source">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- title here -->
+    <title>Home</title>
+    <!-- Favicon and Touch Icons -->
+
+    <link rel="shortcut icon" th:href="@{../images/fav.png}">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{../css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../css/flaticon.css}">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/animate.css}">
+    <link rel="stylesheet" th:href="@{../css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.theme.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.transitions.css}">
+    <link rel="stylesheet" th:href="@{../css/jquery.barfiller.css}">
+    <!--Theme custom css -->
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <!--Theme Responsive css-->
+    <link rel="stylesheet" th:href="@{../css/responsive.css}" />
+    <script th:src="@{../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+
+</head>
+<body>
+
+<div class="post-area">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12" >
+                <div class="single-post" >
+                    <a th:href="@{/}" style="font-size: 18px;margin: 1px;">返回首页</a>
+                    <div class="inner-post">
+
+                        <div class="post-info">
+                        <input type="hidden" name="id" id="hideId" th:value="${detail.getId()}">
+                            <div class="post-title">
+                                <h3><p style="text-align: center" th:text="${detail.getTitle()}">Tourism in cox's bazar</p></h3>
+                            </div>
+                            <div class="blog-meta fix" >
+                                <div class="meta-left pull-left" >
+                                    <ul >
+                                        <li > <span class="flaticon-man-user user"></span> <p> <a href="#" th:text="${detail.getAuthor()}">Admin</a> </p></li>
+
+                                        <li><span class="flaticon-calendar clendar"></span><p>发布于：&nbsp;</p>
+                                            <p th:text="${#dates.format(detail.getCreated(), 'yyyy-MM-dd ')}">20 Jan
+                                                2018</p></li>
+                                        <li><span class="flaticon-calendar clendar"></span><p>修改于：&nbsp;</p>
+                                            <p th:text="${#dates.format(detail.getModified(), 'yyyy-MM-dd ')}">20 Jan
+                                                2018</p></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="post-content" >
+                               &nbsp;&nbsp; <p th:text="${detail.getContent()}"> </p>
+                            </div>
+
+                            <div class="blog-meta fix" >
+                                <div class="meta-left pull-left" >
+                                    <ul>
+                                        <li> <img th:src="@{../images/159604.png}" style="width: 30px;height: 30px"> <p th:text="${detail.getHits()}">1人</p><p>人看过</p></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div>
+                                <div id="addInput">
+                                <p style="font-weight: 900;font-size: 20px">热门评论&nbsp;&nbsp;
+                                    <span style="font-weight: 500"> (<span style="font-weight: 500;font-size: 20px" th:text="${i}"></span>)</span></p>
+                                </div>
+                                <div class="media" th:each="comment:${comments}">
+
+                                    <div class="media-left " style="max-width: 50px;max-height: 80px;">
+                                        <a>
+                                            <img class="media-object" th:src="@{../images/666201.png}" style="min-height: 40px;min-width: 40px" alt="图片无法加载">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="media-heading" th:text="${comment.getAuthor()}" style="font-weight: 900;font-size: 18px" ></span>&nbsp;&nbsp;<span style="background-color: #9d9d9d; width:10px;height: 5px;font-size: 10px;color: #5e5e5e" th:text="${comment.getIp()}"></span><br>
+                                        &nbsp;&nbsp;&nbsp;<span th:text="${comment.getContent()}" ></span>  <span class="myupdate" style="float: right ; width: 50px;height: 40px ;text-align:center;
+                                                                                                    line-height: 40px;" ><a th:href="@{/deleteComment(id=${comment.getId()},article_id=${comment.getArticle_id()})}" style="color:black;">删除</a> </span>
+                                        <p style="color: #9d9d9d;" th:text="${#dates.format(comment.getCreated(), 'MM-dd')}"></p>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- footer area end here -->
+<!-- js file start -->
+<script th:src="@{../js/vendor/jquery-1.12.0.min.js}"></script>
+<script th:src="@{../js/plugins.js}"></script>
+<script th:src="@{../js/Popper.js}"></script>
+<script th:src="@{../js/bootstrap.min.js}"></script>
+<script th:src="@{../js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../js/owl.carousel.min.js}"></script>
+<script th:src="@{../js/isotope.pkgd.min.js}"></script>
+<script th:src="@{../js/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{../js/scrollup.js}"></script>
+<script th:src="@{../js/jquery.counterup.min.js}"></script>
+<script th:src="@{../js/waypoints.min.js}"></script>
+<script th:src="@{../js/jquery.appear.js}"></script>
+<script th:src="@{../js/jquery.barfiller.js}"></script>
+<script th:src="@{../js/main.js}"></script>
+<!-- End js file -->
+
+</body>
+<script type="text/javascript">
+const insertComment = document.getElementById("insertComment");
+const addInput = document.getElementById('addInput')
+const hideId = document.getElementById('hideId')
+insertComment.onclick = ()=> {
+    let form = document.createElement('form')
+    form.setAttribute('action','http://localhost:8090/insertComment')
+    form.innerHTML = `
+        <input type="hidden" name="article_id" value="${hideId.value}">
+        <input placeholder="请输入你的评论" name="content" placeholder="请发表您的言论">
+        <input type="submit" value="提交">
+        </form>
+    `
+    addInput.appendChild(form)
+}
+
+</script>
+</html>
